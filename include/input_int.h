@@ -1,5 +1,5 @@
 /**
- * Sammlung von Funktionen für die Eingabe von int-Werten über die Konsole
+ * Sammlung von Funktionen fÃ¼r die Eingabe von int-Werten Ã¼ber die Konsole
  */
 
 // Include Guard setzen

@@ -1,7 +1,7 @@
 /**
  * Eine Implementierung des Spiels "Schiffe versenken"
- * Schiffe können selbst oder zufällig platziert werden,
- * und haben immer eine Länge die durch SCHIFF_GROESSE definiert wird.
+ * Schiffe kÃ¶nnen selbst oder zufÃ¤llig platziert werden,
+ * und haben immer eine LÃ¤nge die durch SCHIFF_GROESSE definiert wird.
  */
 
 // Include Guard setzen

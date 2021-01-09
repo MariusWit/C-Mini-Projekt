@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo apt-get -y install gpp
+sudo apt-get -y install build-essential
 sudo apt-get -y install make
 sudo apt-get -y install cmake
 sudo apt-get -y install libncurses-dev

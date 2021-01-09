@@ -1,19 +1,19 @@
 #include "../include/oberflaeche.h"
 
 /**
- * @brief Stellt die Spieloberfläche und interaktive Eingabe bereit
+ * @brief Stellt die SpieloberflÃ¤che und interaktive Eingabe bereit
  * @param spieler_ptr Spieler Struktur, um das Spielfeld des gegners darzustellen die
- * ausgewählten x- und y-Koordinaten werden über die Struktur zurückgegeben
- * @param y_pos_ptr Die ausgewählte y-Koordinate wird über den Pointer zurückgegeben
- * @param x_pos_ptr Die ausgewählte x-Koordinate wird über den Pointer zurückgegeben
+ * ausgewÃ¤hlten x- und y-Koordinaten werden Ã¼ber die Struktur zurÃ¼ckgegeben
+ * @param y_pos_ptr Die ausgewÃ¤hlte y-Koordinate wird Ã¼ber den Pointer zurÃ¼ckgegeben
+ * @param x_pos_ptr Die ausgewÃ¤hlte x-Koordinate wird Ã¼ber den Pointer zurÃ¼ckgegeben
 */
 void spieler_tipp_abgabe(struct spieler* spieler_ptr, int* y_pos_ptr, int* x_pos_ptr)
 {
 	initscr(); // leeres Fenster erzeugen
-	cbreak(); // Puffern von Eingaben deaktivieren (kein ENTER nötig)
+	cbreak(); // Puffern von Eingaben deaktivieren (kein ENTER nÃ¶tig)
 	noecho(); // Benutzereingaben unsichtbar (sichtbar machen mit echo())
 	keypad(stdscr, TRUE); // Funktions- und Pfeiltasten erlauben
-	nodelay(stdscr, TRUE); // verhindert Anhalten des Programms für Eingaben
+	nodelay(stdscr, TRUE); // verhindert Anhalten des Programms fÃ¼r Eingaben
 
 	curs_set(0); // Cursor unsichtbar (0), sichtbar (1)
 
@@ -21,11 +21,11 @@ void spieler_tipp_abgabe(struct spieler* spieler_ptr, int* y_pos_ptr, int* x_pos
 
 	int modus = 1;
 
-	// Minimum und Maximum für X-Koordinaten festlegen
+	// Minimum und Maximum fÃ¼r X-Koordinaten festlegen
 	int x_min = (SPIELFELD_X_OFFSET + 2);
 	int x_max = (SPIELFELD_X_OFFSET + 2) + (spieler_ptr->gegnerisches_spielfeld.anz_spalten * 2) - 2;
 
-	// Minimum und Maximum für Y-Koordinaten festlegen
+	// Minimum und Maximum fÃ¼r Y-Koordinaten festlegen
 	int y_min = (SPIELFELD_Y_OFFSET + 1);
 	int y_max = (SPIELFELD_Y_OFFSET + 1) + (spieler_ptr->gegnerisches_spielfeld.anz_zeilen - 1);
 
@@ -74,7 +74,7 @@ void spieler_tipp_abgabe(struct spieler* spieler_ptr, int* y_pos_ptr, int* x_pos
 			// Modus entweder von 1 auf 2 setzen oder von 2 auf 1
 			modus = modus == 1 ? 2 : 1;
 			break;
-		case '\n': // Für ENTER, ENTER_KEY fängt CarriageReturn nicht ab
+		case '\n': // FÃ¼r ENTER, ENTER_KEY fÃ¤ngt CarriageReturn nicht ab
 			*y_pos_ptr = y - (SPIELFELD_Y_OFFSET + 1); // y-Koordinate in Koordinate im Spielfeld umwandeln
 			*x_pos_ptr = (x - (SPIELFELD_X_OFFSET + 1)) / 2; // x-Koordinate in Koordinate im Spielfeld umwandeln
 			quit = 1;
@@ -89,34 +89,34 @@ void spieler_tipp_abgabe(struct spieler* spieler_ptr, int* y_pos_ptr, int* x_pos
 
 /**
  * @brief Bietet Ausgabe und Eingabe um Schiffe zu platzieren
- * @param spieler_ptr Spieler Struktur für die Darstellung des Spielfelds
+ * @param spieler_ptr Spieler Struktur fÃ¼r die Darstellung des Spielfelds
  * @param schiff_nummer Nummer des Schiffs das gesetzt wird
- * @param y_pos_ptr Pointer auf einen int-Wert für die y-Koordinate eines Schiffs
- * @param x_pos_ptr Pointer auf einen int-Wert für die x-Koordinate eines Schiffs
- * @param ausrichtung_ptr Pointer auf einen int-Wert für die Ausrichtung eines zu setzenden Schiffs
- * @return Auswahl, 0 für Schiff mit Koordinaten platzieren, -1 für zufällige Platzierung
+ * @param y_pos_ptr Pointer auf einen int-Wert fÃ¼r die y-Koordinate eines Schiffs
+ * @param x_pos_ptr Pointer auf einen int-Wert fÃ¼r die x-Koordinate eines Schiffs
+ * @param ausrichtung_ptr Pointer auf einen int-Wert fÃ¼r die Ausrichtung eines zu setzenden Schiffs
+ * @return Auswahl, 0 fÃ¼r Schiff mit Koordinaten platzieren, -1 fÃ¼r zufÃ¤llige Platzierung
 */
 int spieler_schiffe_platzieren(struct spieler* spieler_ptr, const int schiff_nummer, int* y_pos_ptr, int* x_pos_ptr,
                                int* ausrichtung_ptr)
 {
 	initscr(); // leeres Fenster erzeugen
-	cbreak(); // Puffern von Eingaben deaktivieren (kein ENTER nötig)
+	cbreak(); // Puffern von Eingaben deaktivieren (kein ENTER nÃ¶tig)
 	noecho(); // Benutzereingaben unsichtbar (sichtbar machen mit echo())
 	keypad(stdscr, TRUE); // Funktions- und Pfeiltasten erlauben
-	nodelay(stdscr, TRUE); // verhindert Anhalten des Programms für Eingaben
+	nodelay(stdscr, TRUE); // verhindert Anhalten des Programms fÃ¼r Eingaben
 
 	curs_set(0); // Cursor unsichtbar (0), sichtbar (1)
 
 	int quit = 0;
 
-	// Wenn ein Schiff zufällig platziert werden soll -1
+	// Wenn ein Schiff zufÃ¤llig platziert werden soll -1
 	int auswahl = 0;
 
-	// Minimum und Maximum für X-Koordinaten festlegen
+	// Minimum und Maximum fÃ¼r X-Koordinaten festlegen
 	int x_min = (SPIELFELD_X_OFFSET + 2);
 	int x_max = (SPIELFELD_X_OFFSET + 2) + (spieler_ptr->gegnerisches_spielfeld.anz_spalten * 2) - 2;
 
-	// Minimum und Maximum für Y-Koordinaten festlegen
+	// Minimum und Maximum fÃ¼r Y-Koordinaten festlegen
 	int y_min = (SPIELFELD_Y_OFFSET + 1);
 	int y_max = (SPIELFELD_Y_OFFSET + 1) + (spieler_ptr->gegnerisches_spielfeld.anz_zeilen - 1);
 
@@ -168,12 +168,12 @@ int spieler_schiffe_platzieren(struct spieler* spieler_ptr, const int schiff_num
 			x = x > x_max ? x_max : x;
 			erase();
 			break;
-		case 'z': // Ein Schiff zufällig platzieren
-			// Auswahl auf -1 für eine zufällige Platzierung
+		case 'z': // Ein Schiff zufÃ¤llig platzieren
+			// Auswahl auf -1 fÃ¼r eine zufÃ¤llige Platzierung
 			auswahl = -1;
 			quit = 1;
 			break;
-		case '\n': // Für ENTER, ENTER_KEY fängt CarriageReturn nicht ab
+		case '\n': // FÃ¼r ENTER, ENTER_KEY fÃ¤ngt CarriageReturn nicht ab
 			while (!quit)
 			{
 				// Position speichern
@@ -182,7 +182,7 @@ int spieler_schiffe_platzieren(struct spieler* spieler_ptr, const int schiff_num
 
 				zeichne_richtungspfeile(y, x, y_max, x_max, y_min, x_min);
 
-				// Pfeiltaste für richtung
+				// Pfeiltaste fÃ¼r richtung
 				const int richtung = getch();
 				switch (richtung)
 				{
@@ -220,16 +220,16 @@ int spieler_schiffe_platzieren(struct spieler* spieler_ptr, const int schiff_num
 }
 
 /**
- * @brief Dekodiert einen Wert im Spielfeld zu einem char für die Anzeige
+ * @brief Dekodiert einen Wert im Spielfeld zu einem char fÃ¼r die Anzeige
  * @details Kodierung des Spielfelds:
  *	0: Wasser (~)
- *	-1 bis -333 Treffer für den jeweilig getroffenen Teil eines Schiffs (T)
+ *	-1 bis -333 Treffer fÃ¼r den jeweilig getroffenen Teil eines Schiffs (T)
  *	-333: kein Treffer (O)
  *	-1000: versenkt (V)
  *
  * @param value Kodierter Wert im Spielfeld
- * @param modus 2 für Debug-Modus, um Schiffe etc. für den Spieler sofort sichtbar zu machen
- * @return Anzuzeigendes Zeichen für die Ausgabe
+ * @param modus 2 fÃ¼r Debug-Modus, um Schiffe etc. fÃ¼r den Spieler sofort sichtbar zu machen
+ * @return Anzuzeigendes Zeichen fÃ¼r die Ausgabe
 */
 char spielfeld_index_dekodieren(const int value, const int modus)
 {
@@ -275,7 +275,7 @@ void zeichne_indizes(const int anz_zeilen, const int anz_spalten, const int spie
 	//Anzeige mit Spalten und Zeilen- und Spaltennummern
 	for (int index_spalten = 0; index_spalten < anz_spalten; index_spalten++)
 	{
-		// Spaltenkennung über oberen Spielfeldrand schreiben
+		// Spaltenkennung Ã¼ber oberen Spielfeldrand schreiben
 		mvprintw((SPIELFELD_Y_OFFSET - 1), (index_spalten * 2) + (SPIELFELD_X_OFFSET + 2), "%c", ('a' + index_spalten));
 	}
 
@@ -286,7 +286,7 @@ void zeichne_indizes(const int anz_zeilen, const int anz_spalten, const int spie
 	}
 
 
-	// Um die Spieler differenzieren zu können, Grün: Spieler 1, Rot: Spieler 2
+	// Um die Spieler differenzieren zu kÃ¶nnen, GrÃ¼n: Spieler 1, Rot: Spieler 2
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_RED);
 	init_pair(2, COLOR_BLACK, COLOR_GREEN);
@@ -327,9 +327,9 @@ void zeichne_indizes(const int anz_zeilen, const int anz_spalten, const int spie
 }
 
 /**
- * @brief Zeichnet das Fadenkreuz für die Auswahl der Koordinaten durch einen Spieler
- * @param y Derzeitige ausgewählte y-Koordinate
- * @param x Derzeitige ausgewählte x-Koordinate
+ * @brief Zeichnet das Fadenkreuz fÃ¼r die Auswahl der Koordinaten durch einen Spieler
+ * @param y Derzeitige ausgewÃ¤hlte y-Koordinate
+ * @param x Derzeitige ausgewÃ¤hlte x-Koordinate
  * @param anz_zeilen Anzahl der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
 */
@@ -350,7 +350,7 @@ void zeichne_spielfeld_inhalt(int** spielfeld_ptr, const int anz_zeilen, const i
 	{
 		for (int index_spalten = 0; index_spalten < anz_spalten; index_spalten++)
 		{
-			// Spielfeld ist um 4 Zeilen nach unten geschoben um Platz für Ausgaben darüber zu haben
+			// Spielfeld ist um 4 Zeilen nach unten geschoben um Platz fÃ¼r Ausgaben darÃ¼ber zu haben
 			mvprintw(index_zeilen + (SPIELFELD_Y_OFFSET + 1), (index_spalten * 2) + (SPIELFELD_X_OFFSET + 2), "%c",
 			         spielfeld_index_dekodieren(spielfeld_ptr[index_zeilen][index_spalten], modus));
 		}
@@ -360,7 +360,7 @@ void zeichne_spielfeld_inhalt(int** spielfeld_ptr, const int anz_zeilen, const i
 /**
  * @brief Zeichnet das gesamte Spielfeld also Indizierung und Inhalt
  * @param spielfeld_ptr Spielfeld das darstellt werden soll
- * @param modus Für verdeckte Schiffe 1 für offen gelegte Schiffe 2
+ * @param modus FÃ¼r verdeckte Schiffe 1 fÃ¼r offen gelegte Schiffe 2
 */
 void zeichne_spielfeld(struct matrix* spielfeld_ptr, const int modus, const int spieler_nummer)
 {
@@ -370,13 +370,13 @@ void zeichne_spielfeld(struct matrix* spielfeld_ptr, const int modus, const int 
 }
 
 /**
- * @brief Zeichnen der möglichen Richtungen für die Ausrichtung eines Schiffs
+ * @brief Zeichnen der mÃ¶glichen Richtungen fÃ¼r die Ausrichtung eines Schiffs
  * @param y_pos Derzeitige y-Koordinate
  * @param x_pos Derzeitige x-Koordinate
- * @param y_max Maximum für die y-Koordinate
- * @param x_max Maximum für die x-Koordinate
- * @param y_min Minimum für die y-Koordinate
- * @param x_min Maximum für die x-Koordinate
+ * @param y_max Maximum fÃ¼r die y-Koordinate
+ * @param x_max Maximum fÃ¼r die x-Koordinate
+ * @param y_min Minimum fÃ¼r die y-Koordinate
+ * @param x_min Maximum fÃ¼r die x-Koordinate
 */
 void zeichne_richtungspfeile(const int y_pos, const int x_pos, const int y_max, const int x_max, const int y_min,
                              const int x_min)

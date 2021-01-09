@@ -1,5 +1,5 @@
 /**
- * Sammlung von Funktionen für 2D-Felder mit int-Werten
+ * Sammlung von Funktionen fÃ¼r 2D-Felder mit int-Werten
  */
 
 // Include Guard setzen

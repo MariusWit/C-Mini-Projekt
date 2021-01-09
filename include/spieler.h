@@ -1,6 +1,6 @@
 /*
- * Spieler Struktur für einen Spieler, mit benötigten Werten
- * für das spielen von "Schiffe_versenken"
+ * Spieler Struktur fÃ¼r einen Spieler, mit benÃ¶tigten Werten
+ * fÃ¼r das spielen von "Schiffe_versenken"
  */
 
 #ifndef SPIELER_H
@@ -9,18 +9,18 @@
 #include "../include/felder_2d.h"
 
 /**
- * @brief Struktur für einen Spieler mit der Spieler Nummer, dem letzt ausführten Tipp,
+ * @brief Struktur fÃ¼r einen Spieler mit der Spieler Nummer, dem letzt ausfÃ¼hrten Tipp,
  * der Anzahl der bisher abgegeben Tipps und dem gegnerischem Spielfeld
 */
 struct spieler
 {
-	// Spielregeln als const um spätere Änderung zu verhindern
+	// Spielregeln als const um spÃ¤tere Ã„nderung zu verhindern
 	const int spieler_nummer; // Nummer des Spielers, 1 oder 2
 	const int anz_schiffe; // Anzahl der Schiffe auf dem generischen Spielfeld
 	int letzte_x_pos; // Derzeitige Position auf dem Spielfeld x-Koordinate
 	int letzte_y_pos; // Derzeitige Position auf dem Spielfeld y-Koordinate
 	int anz_versuche; // Bisher abgegebene Tipps 
-	struct matrix gegnerisches_spielfeld; // Spielfeld mit den Schiffen des Gegners für das Tipps abgegeben wird
+	struct matrix gegnerisches_spielfeld; // Spielfeld mit den Schiffen des Gegners fÃ¼r das Tipps abgegeben wird
 };
 
 #endif //SPIELER_H

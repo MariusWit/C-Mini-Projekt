@@ -27,7 +27,7 @@ Schiffe versenken:
 Installation (WPU):
 
 	Projekt herunterladen
-	Projekt entpacken z.B. mit "unzip 2020-01-09_C-Mini-Projekt-main.zip"
+	Projekt entpacken z.B. mit "unzip C-Mini-Projekt-main.zip"
 	
 	Falls gewünscht kann das Projekt mit dem Script "install_and_run_project.sh" automatisch installiert werden
 	dabei werden die benötigen Pakete installiert, das Projekt erstellt und ausgeführt
@@ -38,9 +38,12 @@ Installation (WPU):
 	
 	Für beide Möglichkeiten sind die folgenen Pakete erforderlich
 	Benötigte Packages installieren
-		1. "sudo apt-get install make"
-		2. "sudo apt-get install cmake"
-		3. "sudo apt-get install libncurses-dev"
+		1. "sudo apt-get install gpp"
+		2. "sudo apt-get install build-essential"
+		
+		3. "sudo apt-get install make"
+		4. "sudo apt-get install cmake"
+		5. "sudo apt-get install libncurses-dev"
 
 
 	Entweder mit der Bash a) oder mit Atom b) Compilieren und Ausführen

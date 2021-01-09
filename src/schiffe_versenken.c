@@ -19,9 +19,9 @@ int spiel_start()
 
 	/**
 	 * Spieler anlegen die abwechselnd Tipps abgeben
-	 * Schritte die dabei durchgeführt werden:
-	 *	- Speichern der Spielregeln für jeden Spieler (Anzahl der Zeilen, Anzahl der Spalten und Anzahl der Schiffe)
-	 *	- Reservieren des Speichers für das Spielfeld
+	 * Schritte die dabei durchgefÃ¼hrt werden:
+	 *	- Speichern der Spielregeln fÃ¼r jeden Spieler (Anzahl der Zeilen, Anzahl der Spalten und Anzahl der Schiffe)
+	 *	- Reservieren des Speichers fÃ¼r das Spielfeld
 	 */
 	struct spieler spieler1 = init_spieler(1, anz_zeilen, anz_spalten, anz_schiffe);
 	struct spieler spieler2 = init_spieler(2, anz_zeilen, anz_spalten, anz_schiffe);
@@ -30,7 +30,7 @@ int spiel_start()
 	eingabe_schiffe_platzieren(&spieler1);
 	eingabe_schiffe_platzieren(&spieler2);
 
-	// Für benötige Treffer bis zum Sieg
+	// FÃ¼r benÃ¶tige Treffer bis zum Sieg
 	int spieler1_treffer_bis_sieg = 0;
 	int spieler2_treffer_bis_sieg = 0;
 
@@ -39,7 +39,7 @@ int spiel_start()
 	{
 		spieler1_treffer_bis_sieg = spieler_zug(&spieler1);
 
-		// Wenn keine Treffer mehr benötigt hat Spieler 1 gewonnen
+		// Wenn keine Treffer mehr benÃ¶tigt hat Spieler 1 gewonnen
 		if (spieler1_treffer_bis_sieg == 0)
 		{
 			printf("Spieler 1 hat nach %i Versuchen gewonnen.\n", spieler1.anz_versuche);
@@ -48,7 +48,7 @@ int spiel_start()
 
 		spieler2_treffer_bis_sieg = spieler_zug(&spieler2);
 
-		// Wenn keine Treffer mehr benötigt hat Spieler 2 gewonnen
+		// Wenn keine Treffer mehr benÃ¶tigt hat Spieler 2 gewonnen
 		if (spieler2_treffer_bis_sieg == 0)
 		{
 			printf("Spieler 2 hat nach %i Versuchen gewonnen.\n", spieler2.anz_versuche);
@@ -65,20 +65,20 @@ int spiel_start()
 }
 
 /**
- * @brief Eingabe der Schiffe durch den Gegner über die Oberfläche
- * @param spieler_ptr Spieler Struktur für die Schiffe gesetzt wird
+ * @brief Eingabe der Schiffe durch den Gegner Ã¼ber die OberflÃ¤che
+ * @param spieler_ptr Spieler Struktur fÃ¼r die Schiffe gesetzt wird
 */
 void eingabe_schiffe_platzieren(struct spieler* spieler_ptr)
 {
-	int ausrichtung = 0; // 1, 2, 3 oder 4 für die Ausrichtung eines Schiffs
+	int ausrichtung = 0; // 1, 2, 3 oder 4 fÃ¼r die Ausrichtung eines Schiffs
 	int x_koordinate = 0; // x-Koordinate von wo das erstellen eines Schiffs startet
 	int y_koordinate = 0; // y-Koordinate von wo das erstellen eines Schiffs startet
-	int ret_val = 0; // Getroffene Auswahl auf der Oberfläche
+	int ret_val = 0; // Getroffene Auswahl auf der OberflÃ¤che
 
-	// Schiffe platzieren bis die benötige Anzahl gesetzt wurde
+	// Schiffe platzieren bis die benÃ¶tige Anzahl gesetzt wurde
 	for (int i = 1; i <= spieler_ptr->anz_schiffe; i++)
 	{
-		// Oberfläche für die Eingabe aufrufen
+		// OberflÃ¤che fÃ¼r die Eingabe aufrufen
 		const int auswahl = spieler_schiffe_platzieren(spieler_ptr, i, &y_koordinate, &x_koordinate, &ausrichtung);
 		if (auswahl == -1)
 		{
@@ -105,26 +105,26 @@ void eingabe_schiffe_platzieren(struct spieler* spieler_ptr)
 
 
 /**
- * @brief Führt einen Zug für den übergebenen Spieler durch, dieser gibt seinen Tipp ab, welcher dann überprüft wird
+ * @brief FÃ¼hrt einen Zug fÃ¼r den Ã¼bergebenen Spieler durch, dieser gibt seinen Tipp ab, welcher dann Ã¼berprÃ¼ft wird
  * @param spieler_ptr Spieler der sein Tipp abgeben soll
- * @return Anzahl der noch benötigten Treffer auf bisher nicht getroffene Schiffsteile
+ * @return Anzahl der noch benÃ¶tigten Treffer auf bisher nicht getroffene Schiffsteile
 */
 int spieler_zug(struct spieler* spieler_ptr)
 {
 	int y_pos_tipp = 0;
 	int x_pos_tipp = 0;
 
-	// Der Zug beginnt mit der Abgabe eines Tipps über die Oberfläche
+	// Der Zug beginnt mit der Abgabe eines Tipps Ã¼ber die OberflÃ¤che
 	spieler_tipp_abgabe(spieler_ptr, &y_pos_tipp, &x_pos_tipp);
 
-	// Mit den Koordinaten die ausgewählt wurden auf Treffer überprüfen und ggf. setzen
+	// Mit den Koordinaten die ausgewÃ¤hlt wurden auf Treffer Ã¼berprÃ¼fen und ggf. setzen
 	check_and_set_getroffen(spieler_ptr->gegnerisches_spielfeld.elemente, y_pos_tipp, x_pos_tipp, spieler_ptr->anz_schiffe);
 
-	// Überprüfen und setzen falls ein Schiff als versenkt markiert werden muss
+	// ÃœberprÃ¼fen und setzen falls ein Schiff als versenkt markiert werden muss
 	check_versenkt(spieler_ptr->gegnerisches_spielfeld.elemente, spieler_ptr->gegnerisches_spielfeld.anz_zeilen,
 	               spieler_ptr->gegnerisches_spielfeld.anz_spalten, spieler_ptr->anz_schiffe);
 
-	// Benötige Treffer bis zum Sieg bestimmen, wenn dies 0 ist hat der Spieler gewonnen
+	// BenÃ¶tige Treffer bis zum Sieg bestimmen, wenn dies 0 ist hat der Spieler gewonnen
 	const int anz_treffer_bis_sieg = count_not_hit_ship_parts(spieler_ptr->gegnerisches_spielfeld.elemente,
 	                                                          spieler_ptr->gegnerisches_spielfeld.anz_zeilen,
 	                                                          spieler_ptr->gegnerisches_spielfeld.anz_spalten,
@@ -142,12 +142,12 @@ int spieler_zug(struct spieler* spieler_ptr)
 
 
 /**
- * @brief Initialisiert einen Spieler soweit, dass Schiffe platziert werden können
+ * @brief Initialisiert einen Spieler soweit, dass Schiffe platziert werden kÃ¶nnen
  * @param spieler_nummer Nummer des Spielers, 1 oder 2
  * @param anz_zeilen Anzahl der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
- * @param anz_schiffe Anzahl der Schiffe die zufällig gesetzt werden sollen
- * @return spieler Rückgabe einer initialisierten spieler Struktur
+ * @param anz_schiffe Anzahl der Schiffe die zufÃ¤llig gesetzt werden sollen
+ * @return spieler RÃ¼ckgabe einer initialisierten spieler Struktur
 */
 struct spieler init_spieler(const int spieler_nummer, const int anz_zeilen, const int anz_spalten,
                             const int anz_schiffe)
@@ -163,7 +163,7 @@ struct spieler init_spieler(const int spieler_nummer, const int anz_zeilen, cons
 		// Gegnerisches Spielfeld vorbereiten
 		.gegnerisches_spielfeld.anz_spalten = anz_spalten,
 		.gegnerisches_spielfeld.anz_zeilen = anz_zeilen,
-		// Speicher für das Spielfeld reservieren
+		// Speicher fÃ¼r das Spielfeld reservieren
 		.gegnerisches_spielfeld.elemente = speicher_reservieren_2d_feld(anz_zeilen, anz_spalten)
 
 	};
@@ -180,13 +180,13 @@ struct spieler init_spieler(const int spieler_nummer, const int anz_zeilen, cons
  * @param x1_koordinate x-Koordinate des Schiffs (Heck) (Hinterseite)
  * @param ausrichtung Ausrichtung in die platziert werden soll: 1 (nach oben); 2 (nach unten); 3 (nach links); 4 (nach rechts)
  * @param schiff_nummer Nummerierung des Schiffs
- * @return Bei erfolgreichem platzieren 0, sonst 1 für eine Kollision oder das verlassen des Spielfelds
+ * @return Bei erfolgreichem platzieren 0, sonst 1 fÃ¼r eine Kollision oder das verlassen des Spielfelds
 */
 int platziere_schiff(struct matrix* spielfeld_ptr, const int y1_koordinate, const int x1_koordinate, const int ausrichtung,
                      const int schiff_nummer)
 {
 	int kollision = 0;
-	// Bei gültigen Koordinaten sind x oder y gleich, Schiffe können nicht quer liegen
+	// Bei gÃ¼ltigen Koordinaten sind x oder y gleich, Schiffe kÃ¶nnen nicht quer liegen
 	int test_x_koordinate = x1_koordinate;
 	int test_y_koordinate = y1_koordinate;
 
@@ -299,7 +299,7 @@ int platziere_schiff(struct matrix* spielfeld_ptr, const int y1_koordinate, cons
 
 
 /**
- * @brief Zufällige Platzierung von Schiffen auf dem Spielfeld
+ * @brief ZufÃ¤llige Platzierung von Schiffen auf dem Spielfeld
  * @param spielfeld_ptr Adresse eines 2D-Felds als Spielfeld
  * @param anz_zeilen Anzahl der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
@@ -350,25 +350,25 @@ int schiffe_zufaellig_platzieren(int** spielfeld_ptr, const int anz_zeilen, cons
  * @param anz_zeilen Anzahl der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
  * @param schiff_nummer Nummer des zu platzierenden Schiffs
- * @return Rückgabewert für eine eventuell vorhandene Kollision, 0 bei erfolgreichem Platzieren sonst 1
+ * @return RÃ¼ckgabewert fÃ¼r eine eventuell vorhandene Kollision, 0 bei erfolgreichem Platzieren sonst 1
 */
 int platziere_zufaellig_vertikal(int** spielfeld_ptr, const int anz_zeilen, const int anz_spalten, const int schiff_nummer)
 {
 	//Schiffe werden vom Startpunkt aus nach oben platziert, daher y-index --
-	const int start_x = rand() % anz_spalten; // Zufällige x-Koordinate
-	const int start_y = rand() % anz_zeilen; // Zufällige y-Koordinate
-	int kollision = 0; // Für Überprüfung auf Spielfeldrand oder auf anderes Schiff
+	const int start_x = rand() % anz_spalten; // ZufÃ¤llige x-Koordinate
+	const int start_y = rand() % anz_zeilen; // ZufÃ¤llige y-Koordinate
+	int kollision = 0; // FÃ¼r ÃœberprÃ¼fung auf Spielfeldrand oder auf anderes Schiff
 
-	// Überprüfung ob das Schiff vom Startpunkt nach oben platziert werden kann
+	// ÃœberprÃ¼fung ob das Schiff vom Startpunkt nach oben platziert werden kann
 	int test_index_y = start_y;
 	while (test_index_y > start_y - SCHIFF_GROESSE && kollision == 0)
 	{
-		// Wenn ein Index auf dem geplanten Weg nicht 0 ist oder der Index den Spielfeldrand überläuft, liegt eine Kollision vor
+		// Wenn ein Index auf dem geplanten Weg nicht 0 ist oder der Index den Spielfeldrand Ã¼berlÃ¤uft, liegt eine Kollision vor
 		if (test_index_y < 0 || spielfeld_ptr[test_index_y][start_x] != 0)
 		{
 			kollision = 1;
 		}
-		// nächsten Index überprüfen
+		// nÃ¤chsten Index Ã¼berprÃ¼fen
 		test_index_y--;
 	}
 
@@ -391,22 +391,22 @@ int platziere_zufaellig_vertikal(int** spielfeld_ptr, const int anz_zeilen, cons
  * @param anz_zeilen Anzahl der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
  * @param schiff_nummer Nummer des zu platzierenden Schiffs
- * @return Rückgabewert für eine eventuell vorhandene Kollision, 0 bei erfolgreichem Platzieren sonst 1
+ * @return RÃ¼ckgabewert fÃ¼r eine eventuell vorhandene Kollision, 0 bei erfolgreichem Platzieren sonst 1
 */
 int platziere_zufaellig_horizontal(int** spielfeld_ptr, const int anz_zeilen, const int anz_spalten,
                                    const int schiff_nummer)
 {
-	// X/Y-Koordinaten zufällig wählen
-	const int start_x = rand() % anz_spalten; // Zufällige x-Koordinate
-	const int start_y = rand() % anz_zeilen; // Zufällige y-Koordinate
-	int kollision = 0; // // Für Überprüfung auf Spielfeldrand oder auf anderes Schiff
+	// X/Y-Koordinaten zufÃ¤llig wÃ¤hlen
+	const int start_x = rand() % anz_spalten; // ZufÃ¤llige x-Koordinate
+	const int start_y = rand() % anz_zeilen; // ZufÃ¤llige y-Koordinate
+	int kollision = 0; // // FÃ¼r ÃœberprÃ¼fung auf Spielfeldrand oder auf anderes Schiff
 
-	//Horizontal müssen x-koordinaten auf der Schiffslänge überprüft werden
+	//Horizontal mÃ¼ssen x-koordinaten auf der SchiffslÃ¤nge Ã¼berprÃ¼ft werden
 	int test_index_x = start_x;
 
 	while (test_index_x < start_x + SCHIFF_GROESSE && kollision == 0)
 	{
-		// Wenn ein Index auf dem geplanten Weg nicht 0 ist oder der Index den Spielfeldrand überläuft, liegt eine Kollision vor
+		// Wenn ein Index auf dem geplanten Weg nicht 0 ist oder der Index den Spielfeldrand Ã¼berlÃ¤uft, liegt eine Kollision vor
 		if (test_index_x >= anz_spalten || spielfeld_ptr[start_y][test_index_x] != 0)
 		{
 			// Schiff platzieren
@@ -430,9 +430,9 @@ int platziere_zufaellig_horizontal(int** spielfeld_ptr, const int anz_zeilen, co
 
 /**
  * @brief Funktion zur Eingabe der Spielregeln durch die Spieler
- * @param anz_zeilen_ptr Adresse für einen int-Wert für die eingelesene Zeilenanzahl
- * @param anz_spalten_ptr Adresse für einen int-Wert für die eingelesene Spaltenanzahl
- * @param anz_schiffe_ptr Adresse für einen int-Wert für die Anzahl der Schiffe der Spieler
+ * @param anz_zeilen_ptr Adresse fÃ¼r einen int-Wert fÃ¼r die eingelesene Zeilenanzahl
+ * @param anz_spalten_ptr Adresse fÃ¼r einen int-Wert fÃ¼r die eingelesene Spaltenanzahl
+ * @param anz_schiffe_ptr Adresse fÃ¼r einen int-Wert fÃ¼r die Anzahl der Schiffe der Spieler
 */
 void eingabe_spielregeln(int* anz_zeilen_ptr, int* anz_spalten_ptr, int* anz_schiffe_ptr)
 {
@@ -476,21 +476,21 @@ void eingabe_spielregeln(int* anz_zeilen_ptr, int* anz_spalten_ptr, int* anz_sch
 }
 
 /**
- * @brief Funktion für die Eingabe von Koordinaten durch den Spieler
- * @param x_koordinate_ptr Adresse für einen int-Wert für die eingegebene x-Koordinate
- * @param y_koordinate_ptr Adresse für einen int-Wert für die eingegebene y-Koordinate
- * @param anz_zeilen Anzahl der Zeilen des Spielfelds benötigt für die Gültigkeitsprüfung der Eingabe
- * @param anz_spalten Anzahl der Spalten des Spielfelds benötigt für die Gültigkeitsprüfung der Eingabe
+ * @brief Funktion fÃ¼r die Eingabe von Koordinaten durch den Spieler
+ * @param x_koordinate_ptr Adresse fÃ¼r einen int-Wert fÃ¼r die eingegebene x-Koordinate
+ * @param y_koordinate_ptr Adresse fÃ¼r einen int-Wert fÃ¼r die eingegebene y-Koordinate
+ * @param anz_zeilen Anzahl der Zeilen des Spielfelds benÃ¶tigt fÃ¼r die GÃ¼ltigkeitsprÃ¼fung der Eingabe
+ * @param anz_spalten Anzahl der Spalten des Spielfelds benÃ¶tigt fÃ¼r die GÃ¼ltigkeitsprÃ¼fung der Eingabe
 */
 void get_valid_cords(int* x_koordinate_ptr, int* y_koordinate_ptr, const int anz_zeilen, const int anz_spalten)
 {
-	// Variablen für eingelesene Koordinaten
+	// Variablen fÃ¼r eingelesene Koordinaten
 	int x_input = 0;
 	int y_input = 0;
 
-	int ret_val = 0; // für Überprüfung ob eine gültige Eingabe gemacht wurde
+	int ret_val = 0; // fÃ¼r ÃœberprÃ¼fung ob eine gÃ¼ltige Eingabe gemacht wurde
 
-	// Eingabe eines gültigen Werts für X-Koordinate
+	// Eingabe eines gÃ¼ltigen Werts fÃ¼r X-Koordinate
 	do
 	{
 		printf("X-Koordinate eingeben: ");
@@ -503,7 +503,7 @@ void get_valid_cords(int* x_koordinate_ptr, int* y_koordinate_ptr, const int anz
 	while (ret_val != 1 || x_input < 1 || x_input > anz_spalten);
 	printf("\n");
 
-	// Eingabe eines gültigen Werts für Y-Koordinate
+	// Eingabe eines gÃ¼ltigen Werts fÃ¼r Y-Koordinate
 	do
 	{
 		printf("Y-Koordinate eingeben: ");
@@ -515,24 +515,24 @@ void get_valid_cords(int* x_koordinate_ptr, int* y_koordinate_ptr, const int anz
 	}
 	while (ret_val != 1 || y_input < 1 || y_input > anz_zeilen);
 
-	// eingegebene Koordinaten haben einen Offset von 1 (Darstellung für den Spieler)
+	// eingegebene Koordinaten haben einen Offset von 1 (Darstellung fÃ¼r den Spieler)
 	*x_koordinate_ptr = x_input - 1;
 	*y_koordinate_ptr = y_input - 1;
 }
 
 /**
- * @brief Zählt noch zu treffende Schiffsteile auf dem Spielfeld
+ * @brief ZÃ¤hlt noch zu treffende Schiffsteile auf dem Spielfeld
  * @param spielfeld_ptr Adresse eines 2D-Felds als Spielfeld
  * @param anz_zeilen Anzahl der Zeilen des 2D-Felds
  * @param anz_spalten Anzahl der Spalten des 2D-Felds
  * @param anz_schiffe Anzahl der Schiffe auf dem Spielfeld
- * @return Anzahl der noch benötigten Treffer die für einen Sieg benötigt werden
+ * @return Anzahl der noch benÃ¶tigten Treffer die fÃ¼r einen Sieg benÃ¶tigt werden
 */
 int count_not_hit_ship_parts(int** spielfeld_ptr, const int anz_zeilen, const int anz_spalten, const int anz_schiffe)
 {
 	int anz_nicht_getroffene_schiffsteile = 0;
 
-	// Jeden Index auf einen positiven Wert überprüfen
+	// Jeden Index auf einen positiven Wert Ã¼berprÃ¼fen
 	for (int index_zeilen = 0; index_zeilen < anz_zeilen; index_zeilen++)
 	{
 		for (int index_spalten = 0; index_spalten < anz_spalten; index_spalten++)
@@ -548,7 +548,7 @@ int count_not_hit_ship_parts(int** spielfeld_ptr, const int anz_zeilen, const in
 }
 
 /**
- * @brief Überprüft und setzt ob an den übergebenen Koordinaten etwas getroffen wurde
+ * @brief ÃœberprÃ¼ft und setzt ob an den Ã¼bergebenen Koordinaten etwas getroffen wurde
  * @param spielfeld_ptr Adresse des Spielfelds auf das geschossen wurde
  * @param x_koordinate X-Koordinate des Tipps
  * @param y_koordinate Y-Koordinate des Tipps
@@ -568,7 +568,7 @@ int check_and_set_getroffen(int** spielfeld_ptr, const int y_koordinate, const i
 	}
 	else
 	{
-		// Auf bereits ausgeführten Tipp überprüfen
+		// Auf bereits ausgefÃ¼hrten Tipp Ã¼berprÃ¼fen
 		if (spielfeld_ptr[y_koordinate][x_koordinate] == 0)
 		{
 			// Verfehlt, Schuss ist im Wasser gelandet
@@ -585,7 +585,7 @@ int check_and_set_getroffen(int** spielfeld_ptr, const int y_koordinate, const i
 }
 
 /**
- * @brief Überprüft ob ein Schiff versenkt wurde, dies ist der Fall  wenn alle Teile des Schiffs eine negative Schiffsnummer aufweisen
+ * @brief ÃœberprÃ¼ft ob ein Schiff versenkt wurde, dies ist der Fall  wenn alle Teile des Schiffs eine negative Schiffsnummer aufweisen
  * @param spielfeld_ptr Adresse des Spielfelds
  * @param anz_zeilen Anzahl  der Zeilen des Spielfelds
  * @param anz_spalten Anzahl der Spalten des Spielfelds
@@ -594,10 +594,10 @@ int check_and_set_getroffen(int** spielfeld_ptr, const int y_koordinate, const i
 void check_versenkt(int** spielfeld_ptr, const int anz_zeilen, const int anz_spalten, const int anz_schiffe)
 {
 	int anz_treffer = 0;
-	// Iteration über alle Schiffe die auf dem Spielfeld liegen
+	// Iteration Ã¼ber alle Schiffe die auf dem Spielfeld liegen
 	for (int schiff_nummer = 1; schiff_nummer <= anz_schiffe; schiff_nummer++)
 	{
-		// Jeder Index des Spielfelds wird auf einen negativen Wert für die Schiffsnummer überprüft
+		// Jeder Index des Spielfelds wird auf einen negativen Wert fÃ¼r die Schiffsnummer Ã¼berprÃ¼ft
 		for (int index_zeilen = 0; index_zeilen < anz_zeilen; index_zeilen++)
 		{
 			for (int index_spalten = 0; index_spalten < anz_spalten; index_spalten++)
@@ -606,20 +606,20 @@ void check_versenkt(int** spielfeld_ptr, const int anz_zeilen, const int anz_spa
 				const int value = spielfeld_ptr[index_zeilen][index_spalten];
 				if ((schiff_nummer * -1) == value)
 				{
-					// Wenn ein Treffer vorhanden ist die Anzahl der Treffer für das Schiff erhöhen
+					// Wenn ein Treffer vorhanden ist die Anzahl der Treffer fÃ¼r das Schiff erhÃ¶hen
 					anz_treffer++;
 				}
 			}
 		}
 
-		// Wenn so viele Treffer für ein Schiff gezählt wurden wie die Schiffe groß sind, ist es versenkt worden
+		// Wenn so viele Treffer fÃ¼r ein Schiff gezÃ¤hlt wurden wie die Schiffe groÃŸ sind, ist es versenkt worden
 		if (anz_treffer == SCHIFF_GROESSE)
 		{
 			// Schiff auf versenkt setzen
 			schiff_versenkt(spielfeld_ptr, anz_zeilen, anz_spalten, schiff_nummer);
 		}
 
-		// Zurücksetzen des Zählers für Treffer für das nächste Schiff
+		// ZurÃ¼cksetzen des ZÃ¤hlers fÃ¼r Treffer fÃ¼r das nÃ¤chste Schiff
 		anz_treffer = 0;
 	}
 }
@@ -633,7 +633,7 @@ void check_versenkt(int** spielfeld_ptr, const int anz_zeilen, const int anz_spa
 */
 void schiff_versenkt(int** spielfeld_ptr, const int anz_zeilen, const int anz_spalten, const int schiff_nummer)
 {
-	//Jede koordinate wird auf die position des Schiffs geprüft
+	//Jede koordinate wird auf die position des Schiffs geprÃ¼ft
 	for (int index_zeilen = 0; index_zeilen < anz_zeilen; index_zeilen++)
 	{
 		for (int index_spalten = 0; index_spalten < anz_spalten; index_spalten++)

@@ -7,7 +7,7 @@
 
 int main()
 {
-	// Generator für Zufallszahlen initialisieren
+	// Generator fÃ¼r Zufallszahlen initialisieren
 	const time_t zeit = time(0);
 	srand((unsigned int)zeit);
 

@@ -1,17 +1,17 @@
 /**
- * Bietet eine interaktive Oberfläche für das Spiel "Schiffe versenken"
+ * Bietet eine interaktive OberflÃ¤che fÃ¼r das Spiel "Schiffe versenken"
  */
 
 // Include Guard setzen
 #ifndef OBERFLAECHE_H
 #define OBERFLAECHE_H
 
-#include "../include/spieler.h" // Spieler Struktur enthält alle benötigten Informationen für die Darstellung
+#include "../include/spieler.h" // Spieler Struktur enthÃ¤lt alle benÃ¶tigten Informationen fÃ¼r die Darstellung
 #include <ncurses.h>
 
 /**
- * Koordinaten für die obere rechte Ecke des Spielfelds
- * Zeilennummer und Spaltenbezeichnung bei Änderung beachten
+ * Koordinaten fÃ¼r die obere rechte Ecke des Spielfelds
+ * Zeilennummer und Spaltenbezeichnung bei Ã„nderung beachten
  */
 #define SPIELFELD_X_OFFSET 4 // x-Koordinate der linken oberen Ecke des Spielfelds
 #define SPIELFELD_Y_OFFSET 8 // y-Koordinate der linken oberen Ecke des Spielfelds

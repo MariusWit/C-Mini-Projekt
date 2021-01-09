@@ -1,11 +1,11 @@
 /**
- * Sammlung von Funktionen für die Eingabe von int-Werten über die Konsole
+ * Sammlung von Funktionen fÃ¼r die Eingabe von int-Werten Ã¼ber die Konsole
  */
 
 #include "../include/input_int.h"
 
 /**
- * @brief Funktion zum einlesen für eine int-Variable
+ * @brief Funktion zum einlesen fÃ¼r eine int-Variable
  * @param save_loc Adresse einer int-Variable in die gespeichert wird
  * @return Anzahl erfolgreich eingelesener int-Werte
 */
@@ -17,7 +17,7 @@ int get_int_input(int *save_loc) {
 	const unsigned long length = strlen(input);
 
 	if (check_int_input(input, length) == 0) {
-		// Eingabe gültig
+		// Eingabe gÃ¼ltig
 		*save_loc = atoi(input);
 		status = 1;
 	}
@@ -26,16 +26,16 @@ int get_int_input(int *save_loc) {
 }
 
 /**
- * @brief Funktion zur Überprüfung eines Strings auf einen gültigen int-Wert
- * @param input_string String der überprüft werden soll
- * @param length Länge des Strings
- * @return Anzahl gefundener Fehler, bzw. Zeichen die keine Zahl sind 0 wenn String gültig ist
+ * @brief Funktion zur ÃœberprÃ¼fung eines Strings auf einen gÃ¼ltigen int-Wert
+ * @param input_string String der Ã¼berprÃ¼ft werden soll
+ * @param length LÃ¤nge des Strings
+ * @return Anzahl gefundener Fehler, bzw. Zeichen die keine Zahl sind 0 wenn String gÃ¼ltig ist
 */
 int check_int_input(const char* input_string, const unsigned long length) {
 	int fehler = 0;
 	
 	for (unsigned long index = 0; index < length; index++) {
-		// isdigit gibt für Zeichen != [0-9] 0 zurück
+		// isdigit gibt fÃ¼r Zeichen != [0-9] 0 zurÃ¼ck
 		const int auswertung = isdigit((unsigned char)input_string[index]);
 		if (auswertung == 0) {
 			fehler = fehler + 1;
