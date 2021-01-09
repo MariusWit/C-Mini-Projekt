@@ -1,4 +1,5 @@
 Schiffe versenken:
+
 	Der Spielfeldrand hat je nachdem welcher Spieler am Zug ist eine andere Farbe:
 		1. Spieler hat die Farbe: grün
 		2. Spieler hat die Farbe: rot
