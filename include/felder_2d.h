@@ -1,5 +1,11 @@
 /**
- * Sammlung von Funktionen für 2D-Felder mit int-Werten
+ * @file felder_2d.h
+ * @brief Sammlung von Funktionen für 2D-Felder
+ * @version 0.1
+ * @date 2020-12-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
  */
 
 // Include Guard setzen

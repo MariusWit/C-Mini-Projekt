@@ -1,5 +1,11 @@
 /**
- * Sammlung von Funktionen für die Eingabe von int-Werten über die Konsole
+ * @file input_int.h
+ * @brief Sammlung von Funktionen für die Eingabe von int-Werten über die Konsole
+ * @version 0.1
+ * @date 2020-12-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
  */
 
 // Include Guard setzen

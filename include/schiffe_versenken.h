@@ -1,7 +1,13 @@
 /**
- * Eine Implementierung des Spiels "Schiffe versenken"
- * Schiffe können selbst oder zufällig platziert werden,
+ * @file schiffe_versenken.h
+ * @brief Eine Implementierung des Spiels "Schiffe versenken"
+ * @details Schiffe können selbst oder zufällig platziert werden,
  * und haben immer eine Länge die durch SCHIFF_GROESSE definiert wird.
+ * @version 0.1
+ * @date 2020-12-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
  */
 
 // Include Guard setzen

@@ -1,5 +1,11 @@
 /**
- * main.c Als Einstiegspunkt in das Programm
+ * @file main.c
+ * @brief Eintrittspunkt für den Compiler, startet das Spiel
+ * @version 0.1
+ * @date 2021-01-02
+ * 
+ * @copyright Copyright (c) 2021
+ * 
  */
 #include "../include/schiffe_versenken.h"
 

@@ -1,6 +1,12 @@
-/*
- * Spieler Struktur für einen Spieler, mit benötigten Werten
- * für das spielen von "Schiffe_versenken"
+/**
+ * @file spieler.h
+ * @brief  Spieler Struktur für einen Spieler
+ * @details Hält für den Spielablauf benötigte Werte
+ * @version 0.1
+ * @date 2021-01-09
+ * 
+ * @copyright Copyright (c) 2021
+ * 
  */
 
 #ifndef SPIELER_H

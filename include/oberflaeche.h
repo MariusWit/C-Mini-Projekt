@@ -1,5 +1,11 @@
 /**
- * Bietet eine interaktive Oberfläche für das Spiel "Schiffe versenken"
+ * @file oberflaeche.h
+ * @brief Bietet eine interaktive Oberfläche für das Spiel "Schiffe versenken"
+ * @version 0.1
+ * @date 2021-01-02
+ * 
+ * @copyright Copyright (c) 2021
+ * 
  */
 
 // Include Guard setzen
