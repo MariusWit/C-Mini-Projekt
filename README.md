@@ -36,8 +36,7 @@ Installation (WPU):
 		3. Starten des Scripts durch ausführen von "sudo ./install_and_run_project.sh"
 		4. Das Script sollte alle benötigten Packages installieren, das Projekt erstellen und dann ausführen
 	
-	Alle 
-
+	Für beide Möglichkeiten sind die folgenen Pakete erforderlich
 	Benötigte Packages installieren
 		1. "sudo apt-get install make"
 		2. "sudo apt-get install cmake"
@@ -48,7 +47,7 @@ Installation (WPU):
 	a) Compilieren und Ausführen in der Bash:
 		1. In das Projektverzeichnis wechseln "cd C-Mini-Projekt-main"
 		Im Projektverzeichnis die Befehle
-			1. "cmake CMakeList.txt"
+			1. "cmake CMakeLists.txt"
 			2. "make"
 		ausführen.
 
@@ -70,3 +69,14 @@ Installation (WPU):
 			2. In den Ordner mit der auszuführenden Datei wechseln "cd build/Debug/"
 			3. Falls nötig "chmod +x schiffe_versenken" ausführen um die Datei ausfürbar zu machen
 			4. Das Spiel durch ausführen von "./schiffe_versenken" starten
+			
+Projektstruktur: 
+	main.c: Beeinhaltet die main-Funktion und ist der Einstiegspunkt
+	schiffe_versenken.h/schiffe_versenken.c : Ist für die Eingabe der Spielregeln und dem Spielablauf zuständig
+	oberflaeche.h/oberflaeche.c : Stellt Funktionen zur interaktiven Darstellung des Spielfelds mit ncurses bereit
+	spieler.h : Struktur um Informationen über einen SPieler zu speichern
+	felder_2d.h/felder_2d.c : Sammlung Funktionen für 2D-Felder für z.B. Speicher reservieren, alle Werte setzen, Speicher freigeben
+	input_int.h/input_int.c : Sammlung von Funktionen für die Eingabe von int-Werten auf der Konsole z.B. für Gültigkeitsprüfung einer Eingabe
+
+
+
