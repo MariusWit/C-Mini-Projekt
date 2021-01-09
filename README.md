@@ -71,12 +71,24 @@ Installation (WPU):
 			4. Das Spiel durch ausführen von "./schiffe_versenken" starten
 			
 Projektstruktur: 
-	main.c: Beeinhaltet die main-Funktion und ist der Einstiegspunkt
-	schiffe_versenken.h/schiffe_versenken.c : Ist für die Eingabe der Spielregeln und dem Spielablauf zuständig
-	oberflaeche.h/oberflaeche.c : Stellt Funktionen zur interaktiven Darstellung des Spielfelds mit ncurses bereit
-	spieler.h : Struktur um Informationen über einen SPieler zu speichern
-	felder_2d.h/felder_2d.c : Sammlung Funktionen für 2D-Felder für z.B. Speicher reservieren, alle Werte setzen, Speicher freigeben
-	input_int.h/input_int.c : Sammlung von Funktionen für die Eingabe von int-Werten auf der Konsole z.B. für Gültigkeitsprüfung einer Eingabe
+
+	main.c: 
+		Beeinhaltet die main-Funktion und ist der Einstiegspunkt
+	
+	schiffe_versenken.h/schiffe_versenken.c: 
+		Ist für die Eingabe der Spielregeln und dem Spielablauf zuständig
+	
+	oberflaeche.h/oberflaeche.c: 
+		Stellt Funktionen zur interaktiven Darstellung des Spielfelds mit ncurses bereit
+	
+	spieler.h: 
+		Struktur um Informationen über einen SPieler zu speichern
+	
+	felder_2d.h/felder_2d.c: 
+		Sammlung Funktionen für 2D-Felder für z.B. Speicher reservieren, alle Werte setzen, Speicher freigeben
+	
+	input_int.h/input_int.c: 
+		Sammlung von Funktionen für die Eingabe von int-Werten auf der Konsole z.B. für Gültigkeitsprüfung einer Eingabe
 
 
 
